@@ -2,12 +2,11 @@
 """A Basic Flask app.
 """
 from flask_babel import Babel
-from flask import Flask, render_template
-from flask import request
+from flask import Flask, render_template, request
 
 
 class Config:
-    """Represents a Flask Babel configuration.
+    """langauage configuration.
     """
     LANGUAGES = ["en", "fr"]
     BABEL_DEFAULT_LOCALE = "en"
@@ -22,6 +21,7 @@ babel = Babel(app)
 
 @babel.localeselector
 def get_locale() -> str:
+    '''retrieve the locale for a web page'''
      return request.accept_languages.best_match(app.config['LANGUAGES'])
 
 
